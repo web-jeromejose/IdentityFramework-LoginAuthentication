@@ -1,0 +1,9 @@
+
+.vs/
+
+Quiz_Api/obj/
+Quiz_Api/bin/
+IdentityFramework/obj/
+
+IdentityFramework/obj/Debug/
+IdentityFramework/obj/Debug/netcoreapp3.1/IdentityFramework.dll

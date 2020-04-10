@@ -111,6 +111,53 @@ namespace IdentityFramework.Controllers
 
         #endregion
 
+        /**
+         * 
+         * 
+         * 
+         * adding authorize user 
+         * 
+         * in startup.cs add
+         * 
+         *   // using [authorize]
+            //using this var userId = HttpContext.User.Claims.First().Value; 
+            // using header Name = authentication value = Bearer (key)
+            var signingKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("this is the secret phrase"));
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(cfg =>
+            {
+                cfg.RequireHttpsMetadata = false;
+                cfg.SaveToken = true;
+                cfg.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    IssuerSigningKey = signingKey,
+                    ValidateAudience = false,
+                    ValidateIssuer = false,
+                    ValidateLifetime = false,
+                    ValidateIssuerSigningKey = true
+                };
+            });
+
+
+
+                      
+         * 2. in startup add   app.UseAuthentication();
+         * 3. add [Authorize] in the controller
+         * 4. get the userid   var userId = HttpContext.User.Claims.First().Value;
+         * 
+         * 
+         * 
+         * 
+         * 
+         * 
+         * 
+         * 
+         * */
+
     }
-  
+
 }
