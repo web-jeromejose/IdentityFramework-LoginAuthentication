@@ -2,12 +2,12 @@
 
 #Details
 
-Using aspnet core3.1
-with CORS
-with Authrozie 
-with JWT Token
+#Using aspnet core3.1
+#with CORS
+#with Authrozie 
+#with JWT Token
 
-Bonus is the Quiz set up
+#Bonus is the Quiz set up
 
 
 
