@@ -149,7 +149,10 @@ namespace IdentityFramework.Controllers
          * 3. add [Authorize] in the controller
          * 4. get the userid   var userId = HttpContext.User.Claims.First().Value;
          * 
-         * 
+         * in angular add http interceptor to have automatic header request provide: HTTP_INTERCEPTORS,
+                        useClass: AuthInterceptor,
+                        multi: true
+                      }
          * 
          * 
          * 

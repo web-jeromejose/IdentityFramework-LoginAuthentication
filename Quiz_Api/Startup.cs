@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Quiz_Api
 {
@@ -74,6 +75,21 @@ namespace Quiz_Api
                 };
             });
 
+            //add   nuget then here
+            // 1. swashbuckle aspnet core and 2. swashbuckle aspet core swagger
+            //services.AddSwaggerGen((options) => {
+            //    options.SwaggerDoc("v1",
+            //        new Info { title = "My Api", version = "v1" });
+            //});
+            // for swagger using Swashbuckle.AspNetCore.SwaggerGen;
+            // then add app.UseSwagger() in cofigure
+            services.AddSwaggerGen((options)=>
+            {
+                options.SwaggerDoc("v1", info: new Microsoft.OpenApi.Models.OpenApiInfo { Title = "v1", Version = "1.0", Description = "Jerome Jose" });
+            }
+           // options.OperationFilter<SwaggerDefaultValues>()
+            );
+
 
 
             services.AddControllers();
@@ -82,6 +98,12 @@ namespace Quiz_Api
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+           {
+               c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+           });
 
             app.UseAuthentication();
 

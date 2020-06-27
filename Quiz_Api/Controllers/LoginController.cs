@@ -45,9 +45,10 @@ namespace Quiz_Api.Controllers
 
 
                 await signInManager.SignInAsync(user, isPersistent: false);
-             
 
-                return Ok(CreateToken(user));
+                return CreatedAtAction("Register", new { token = CreateToken(user), email = credentials.Email });
+
+                //return Ok(CreateToken(user));
 
             }
             catch (Exception ex)
@@ -69,7 +70,9 @@ namespace Quiz_Api.Controllers
 
             var user = await userManager.FindByEmailAsync(credentials.Email);
 
-            return Ok(CreateToken(user));
+        return CreatedAtAction("Login", new { token = CreateToken(user),email = credentials.Email });
+
+            //return Ok(CreateToken(user));
         }
 
 
